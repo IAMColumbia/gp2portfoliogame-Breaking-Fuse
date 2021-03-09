@@ -44,6 +44,13 @@
 
 ![Imgur](https://imgur.com/FsWffWT.png)
 
+- A Cable knows where its "nodes"/ends are (Up,Down,Left,Right) - acknowledging whether its curved, straight, etc.
+- A Cable can be told to "ReceivePower" (tell the cable which node-direction its receiving power from).
+- A Cable keeps track of how long its held power since it first received it and updates its Sprite based on it.
+- A Cable can "SendPower" to tell the LevelManager its End-Node Ouput.
+- After the LevelManager gets info of where to send power to, it determines if the next tile in the given direction
+ contains a cable and tells that cable to "ReceivePower".
+
 
 ## Art:
 
