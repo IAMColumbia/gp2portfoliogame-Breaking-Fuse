@@ -38,7 +38,8 @@
 
 ## Art:
 
-All Cable Types contain 50 Keyframes of Power Output-fill Animations
+- All Cable Types contain 50 Keyframes of Power Output-fill Animations
+- Sprites will be flipped/oriented just before taking Power Input to assure the animation plays correctly and begins flowing from the correct end
 
 Straight-Cable/Pipe (Can be placed Vertically/Horizontally with any Rotation)
 
