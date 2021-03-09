@@ -38,8 +38,8 @@
 
 ## Design:
 
-- There is a 6-by-6 Grid that will hold each tile
-- A Timer will countdown until the Power Output automatically begins
+- There is a 6x6 Grid that will hold each tile
+- A Timer will count down until the Power Output automatically begins
 - Basic Instructions will be available to the player at all times
 
 ![Imgur](https://imgur.com/FsWffWT.png)
