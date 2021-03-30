@@ -3,6 +3,7 @@
 	
 **Description Short:**	Cable Connector is a singleplayer 2D puzzle game made in Unity that is based on PipeMania(1989). 
 						It tests the player's ability to connect a given set of Cables from a starting point to an ending point. 
+						
 **Description Long:**	Based on PipeMania and the minigame-genre it established, Cable Connector is a singleplayer 2D puzzle game made in Unity where different shapes of cables must be connected to power a generator. 
 			Types of cables include: A Straight Cable (Vertical or Horizontal), A Curved Cable (90 degree angle), a Resistor Cable (Slows Down Flow), and an Untouchable, Shorted Cable that can blow up. 
 			With only a few Cables visible at the start of the level, the player must flip over tiles on the grid-based map in order to reveal the Cable they require.
