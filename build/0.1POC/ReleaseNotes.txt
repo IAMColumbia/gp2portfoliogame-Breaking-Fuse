@@ -1,1 +1,25 @@
 Release Notes version 1 POC
+
+In this version, it is a simple Console Application designed to
+show the generation of a Grid and the Cables within it. 
+These Cables are also rotated and shuffled randomly at 
+the start of generation.
+
+The Cable objects have nodes that will be used for 
+checking for Valid Nodes at Specific Positions.
+These depend on the Cable Type and their rotation. 
+The original POC objective was to get the Validation of 
+Connected-Cables working, but I got caught up on the design 
+behind the Rotator Singleton object and how it would 
+cooperate with the other components of the game.
+
+Cable Connector will have 6-by-6 grids by default. 
+This can be tested by not inputting any size. 
+There is always enough Straight Cables and Curved Cables
+to allow there to be a Connection from the Top-Left-most Tile
+to the Bottom-Right-most Tile of the grid (which is where
+the Power Input/Output Points will be in the final version).
+
+
+
+
