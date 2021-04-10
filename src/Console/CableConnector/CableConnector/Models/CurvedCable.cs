@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CableConnector
+namespace CableConnector.Models
 {
     /// <summary>
     /// A Curved Cable - a cable that has two valid, adjacent nodes (Default: Left/Up) 
@@ -22,31 +22,5 @@ namespace CableConnector
             Nodes = CableRotator.Instance.GetRandomRotation(Nodes); // Forced One clockwise turn
         }
 
-        /// <summary>
-        /// Console App Only - Draw this cable
-        /// </summary>
-        /// <returns>Returns a specific drawing of curved cable depending on its valid Nodes.</returns>
-        public override string Draw()
-        {
-            if (this.Nodes[0].IsValid && this.Nodes[1].IsValid)
-                return "┘";
-            else if (this.Nodes[0].IsValid && this.Nodes[3].IsValid)
-            {
-                return "┐";
-            }
-            else if (this.Nodes[1].IsValid && this.Nodes[2].IsValid)
-            {
-                return "└";
-            }
-            else if (this.Nodes[2].IsValid && this.Nodes[3].IsValid)
-            {
-                return "┌";
-            }
-            //Error
-            else
-            {
-                return "X";
-            }
-        }
     }
 }

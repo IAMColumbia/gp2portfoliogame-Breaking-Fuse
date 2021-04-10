@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CableConnector
+namespace CableConnector.Models
 {
     public class Grid
     {
         #region Fields/Props
-        protected virtual CableTile[,] grid { get; set; }
-        protected virtual int GridColumnSize { get; set; }
-        protected virtual int GridRowSize { get; set; }
+        public virtual CableTile[,] CableTileGrid { get; set; }
+        protected virtual int columnSize { get; set; }
+        protected virtual int rowSize { get; set; }
         #endregion
 
         #region Constructors
@@ -17,11 +17,11 @@ namespace CableConnector
         public Grid(int gridColumnAndRowSize) : this(gridColumnAndRowSize, gridColumnAndRowSize) { }
         public Grid(int gridColumnSize, int gridRowSize)
         {
-            this.GridColumnSize = gridColumnSize;
-            this.GridRowSize = gridRowSize;
-            grid = new CableTile[this.GridColumnSize, this.GridRowSize];
+            this.columnSize = gridColumnSize;
+            this.rowSize = gridRowSize;
+            CableTileGrid = new CableTile[this.columnSize, this.rowSize];
             FillWCableTiles();
-            ShuffleGrid(grid);
+            ShuffleGrid(CableTileGrid);
         }
         #endregion
 
@@ -33,21 +33,21 @@ namespace CableConnector
         {
             Random rand = new Random();
 
-            for (int i = 0; i < this.GridRowSize; i++)
+            for (int i = 0; i < this.rowSize; i++)
             {
-                for(int j = 0; j < this.GridColumnSize; j++)
+                for(int j = 0; j < this.columnSize; j++)
                 {
                     if (i == 0)
                         //Instantiate at least one row of Straight Cables
-                        grid[i, j] = new CableTile(CableTile.CableTypes.Straight);
+                        CableTileGrid[i, j] = new CableTile(CableTile.CableTypes.Straight);
                     else if (i == 1)
                         //Instantiate at least one row of Curved Cables
-                        grid[i, j] = new CableTile(CableTile.CableTypes.Curved);
+                        CableTileGrid[i, j] = new CableTile(CableTile.CableTypes.Curved);
 
                     else
                     {
                         //Instantiate a random type of Cable at this CableTile
-                        grid[i, j] = new CableTile((CableTile.CableTypes) rand.Next(0, Enum.GetNames(typeof(CableTile.CableTypes)).Length));
+                        CableTileGrid[i, j] = new CableTile((CableTile.CableTypes) rand.Next(0, Enum.GetNames(typeof(CableTile.CableTypes)).Length));
                     }
 
                 }
@@ -83,22 +83,7 @@ namespace CableConnector
             }
         }
 
-        /// <summary>
-        /// Console App Only - Loop through this Grid's CableTiles and perform each Draw().
-        /// </summary>
-        public virtual void Draw()
-        {
-            Console.Clear();
-            for (int i = 0; i < this.GridRowSize; i++)
-            {
-                for (int j = 0; j < this.GridColumnSize; j++)
-                {
-                    Console.Write(string.Format("{0}" +
-                        "", grid[i, j].Draw()));
-                }
-                Console.Write(Environment.NewLine);
-            }
-        }
+        
 
 
     }

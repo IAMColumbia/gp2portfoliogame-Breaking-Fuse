@@ -1,4 +1,5 @@
 ﻿using System;
+using CableConnector.ViewModels;
 
 namespace CableConnector
 {
@@ -12,12 +13,12 @@ namespace CableConnector
             {
                 if (size == "")
                 {
-                    Grid g = new Grid();
+                    ConsoleGrid g = new ConsoleGrid();
                     g.Draw();
                 }
                 else
                 {
-                    Grid g = new Grid(Convert.ToInt32(size));
+                    ConsoleGrid g = new ConsoleGrid(Convert.ToInt32(size));
                     g.Draw();
                 }
                 Console.WriteLine("\n\nInput new size to Generate new Grid/CableTiles - E to Exit");

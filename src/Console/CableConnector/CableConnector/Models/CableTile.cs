@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CableConnector
+namespace CableConnector.Models
 {
     public class CableTile : Tile
     {
@@ -38,16 +38,5 @@ namespace CableConnector
                     break;
             }
         }
-
-        /// <summary>
-        /// Call this CableTile's Cable.Draw().
-        /// </summary>
-        /// <returns>Returns the drawing appropriate for the Cable's rotation</returns>
-        public string Draw()
-        {
-            return Cable.Draw();
-        }
-
-
     }
 }
