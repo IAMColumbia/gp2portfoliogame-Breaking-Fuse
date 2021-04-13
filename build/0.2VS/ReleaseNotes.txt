@@ -14,4 +14,4 @@ You can either generate a new grid or [Evaluate] the grid as it is.
 Evaluating will perform an update to the connections/"flow".
 If the StartingTile(Up-Left Tile) and EndingTile(Right-Bottom Tile)
 end with a secure connection, the grid is considered "Solved".
-You can also use a preset grid by entering 'P'.
+You can apply some Preset Tiles by entering 'P' on the default grid.
