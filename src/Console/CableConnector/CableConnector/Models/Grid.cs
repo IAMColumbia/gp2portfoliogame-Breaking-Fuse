@@ -8,6 +8,8 @@ namespace CableConnector.Models
     {
         #region Fields/Props
         public virtual CableTile[,] CableTileGrid { get; set; }
+        public virtual CableTile LastConnectedTile { get; set; }
+        public virtual bool IsSolved { get; set; }
         protected virtual int columnSize { get; set; }
         protected virtual int rowSize { get; set; }
         #endregion
@@ -17,6 +19,7 @@ namespace CableConnector.Models
         public Grid(int gridColumnAndRowSize) : this(gridColumnAndRowSize, gridColumnAndRowSize) { }
         public Grid(int gridColumnSize, int gridRowSize)
         {
+            this.IsSolved = false;
             this.columnSize = gridColumnSize;
             this.rowSize = gridRowSize;
             CableTileGrid = new CableTile[this.columnSize, this.rowSize];
@@ -81,6 +84,8 @@ namespace CableConnector.Models
                 values[row_i, col_i] = values[row_j, col_j];
                 values[row_j, col_j] = temp;
             }
+            
+            this.LastConnectedTile = CableTileGrid[0, 0]; //Designate new StartTile
         }
 
         

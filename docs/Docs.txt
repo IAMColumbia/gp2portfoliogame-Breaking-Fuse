@@ -1,0 +1,26 @@
+~~[Model Structure]~~
+Grid->(Cable)Tile->Cable/TYPECable->Nodes
+└>Evaluator/Solver
+
+
+~~[First Evaluator class thoughts]~~
+I would do a Static Evaluator, but I felt like it would make
+sense that if there's a Possibility for multiple Grids,
+they should get their Evaluator/Solver.
+
+[Relationship to Grid]
+ConsoleGrid Has-A ConsoleEvaluator(ViewModel)
+ConsoleEvaluator Uses-A Grid(from ConsoleGrid))
+
+[Constructor]
+In Constructor, find the Start Node(first element 
+in given Grid). Maybe force a Straight Cable?
+
+[Mechanics]
+"Evaluate()" - loop through grid on Generation/GameLoopUpdate 
+and "ValidateCableTile(tile)"(tile.IsConnected to true). If
+multiple paths are available, follow Priority (Right, Bottom, Up, Left)
+
+ConsoleEvaluator VModel will Re-Write the tile(s) with 
+ConsoleColor.Green at end of Evaluate() to show proper Connection.
+

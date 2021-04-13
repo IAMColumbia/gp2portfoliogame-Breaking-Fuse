@@ -7,46 +7,74 @@ namespace CableConnector.ViewModels
 {
     public class ConsoleGrid
     {
+        #region Fields/Props
         public Grid GridModel { get; set; }
         public int RowColumnSize { get; set; }
+        Evaluator eval = Evaluator.Instance;
+        #endregion
 
+        #region Constructors
         public ConsoleGrid() : this(6) { }
         public ConsoleGrid(int RowColumnSize)
         {
             this.RowColumnSize = RowColumnSize;
             GridModel = new Grid(RowColumnSize);
+            eval.PrepareStartTile(GridModel.CableTileGrid[0, 0]);
+            eval.PrepareEndTile(GridModel.CableTileGrid[GridModel.CableTileGrid.GetLength(0) - 1, 
+                                                        GridModel.CableTileGrid.GetLength(1) - 1]);
+        }
+        #endregion
+
+
+        /// <summary>
+        /// Call on the evaluator class to evaluate this Grid's Model.
+        /// </summary>
+        public void Evaluate()
+        {
+            eval.Evaluate(GridModel);
         }
 
         /// <summary>
-        /// Loop through this Grid's CableTiles and perform an appropriate Drawing to the Console.
+        /// Draw this Grid's CableTiles and perform an appropriate Drawing to the Console.
         /// </summary>
         public void Draw()
         {
-            Console.Clear();
-            for (int i = 0; i < this.RowColumnSize; i++)
+            if (this.GridModel.IsSolved)
             {
-                for (int j = 0; j < this.RowColumnSize; j++)
+                Console.WriteLine("\nThis grid is Solved!");
+            }
+            else
+            {
+                Console.Clear();
+                for (int i = 0; i < this.RowColumnSize; i++)
                 {
-                    switch (GridModel.CableTileGrid[i, j].Type)
+                    for (int j = 0; j < this.RowColumnSize; j++)
                     {
-                        case CableTile.CableTypes.Straight:
-                            DrawStraightCable((StraightCable)GridModel.CableTileGrid[i,j].Cable);
-                            break;
-                        case CableTile.CableTypes.Curved:
-                            DrawCurvedCable((CurvedCable)GridModel.CableTileGrid[i, j].Cable);
-                            break;
-                        case CableTile.CableTypes.FourWay:
-                            DrawFourWayCable((FourWayCable)GridModel.CableTileGrid[i, j].Cable);
-                            break;
-                        default:
-                            DrawDefaultCable();
-                            break;
+                        if (GridModel.CableTileGrid[i, j].IsConnected)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                        switch (GridModel.CableTileGrid[i, j].Type)
+                        {
+                            case CableTile.CableTypes.Straight:
+                                DrawStraightCable((StraightCable)GridModel.CableTileGrid[i, j].Cable);
+                                break;
+                            case CableTile.CableTypes.Curved:
+                                DrawCurvedCable((CurvedCable)GridModel.CableTileGrid[i, j].Cable);
+                                break;
+                            case CableTile.CableTypes.FourWay:
+                                DrawFourWayCable((FourWayCable)GridModel.CableTileGrid[i, j].Cable);
+                                break;
+                            default:
+                                DrawDefaultCable();
+                                break;
+                        }
+                        Console.ForegroundColor = ConsoleColor.White;
                     }
+                    Console.Write(Environment.NewLine);
                 }
-                Console.Write(Environment.NewLine);
             }
         }
-
 
         #region Draw Methods
         /// <summary>
@@ -67,7 +95,7 @@ namespace CableConnector.ViewModels
                 Console.Write("─");
             //If Up and Down are the Valid Nodes
             else if (cable.Nodes[1].IsValid && cable.Nodes[3].IsValid)
-                Console.Write("|");
+                Console.Write("│");
             //Error
             else
             {

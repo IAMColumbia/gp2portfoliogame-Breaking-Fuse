@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CableConnector
+namespace CableConnector.Models
 {
     /// <summary>
     /// Singleton Rotator designed to rotate the Nodes within a Cable (Modify which Nodes are valid)).
