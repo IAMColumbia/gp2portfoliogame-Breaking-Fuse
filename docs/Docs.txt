@@ -4,9 +4,8 @@ Grid->(Cable)Tile->Cable/TYPECable->Nodes
 
 
 ~~[First Evaluator class thoughts]~~
-I would do a Static Evaluator, but I felt like it would make
-sense that if there's a Possibility for multiple Grids,
-they should get their Evaluator/Solver.
+The Evaluator is a singleton that can be used by any grid to
+look for possible connections and if a grid is solved. 
 
 [Relationship to Grid]
 ConsoleGrid Has-A ConsoleEvaluator(ViewModel)

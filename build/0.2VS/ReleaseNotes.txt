@@ -1,1 +1,17 @@
 Release Notes version 2 Vertical Slice
+
+[Notes]
+This version adds the Evaluator/Solver. This finishes the model and 
+makes this ready to bring into a game engine.
+The main mechanic that's missing is input, 
+but I wanted to wait for that to be in Unity.
+
+
+[Instructions]
+To generate a grid, either enter Nothing or a size value.
+This size will be the row size and column size of the grid.
+You can either generate a new grid or [Evaluate] the grid as it is.
+Evaluating will perform an update to the connections/"flow".
+If the StartingTile(Up-Left Tile) and EndingTile(Right-Bottom Tile)
+end with a secure connection, the grid is considered "Solved".
+You can also use a preset grid by entering 'P'.
