@@ -88,8 +88,6 @@ namespace CableConnector.Models
             this.LastConnectedTile = CableTileGrid[0, 0]; //Designate new StartTile
         }
 
-        
-
 
     }
 }

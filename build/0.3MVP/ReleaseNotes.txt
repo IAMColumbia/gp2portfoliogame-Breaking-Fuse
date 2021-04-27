@@ -1,0 +1,12 @@
+Release Notes version 3 MVP
+
+INCOMPLETE!
+
+This release gets most of the functionality from the
+Models into Unity. However, it's not complete.
+A GridGenerator Object acts as a Grid for the CableTiles.
+The grid Instantiates CableTile prefabs.
+
+Controls:
+Left Click - Rotate ALL Tiles Left (Temporarily)
+Right Click - Rotate ALL Tiles Right (Temporarily)
