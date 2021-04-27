@@ -1,1 +1,8 @@
 Asset Log
+GameBoard.png is in 4k resolution(3840x2160)
+Each Tile in the Grid is 320x320 pixels
+GameBoard.png still requires:
+	- TimeRemaining Text (Top Box)
+	- TimeRemaining Value (Top Sub-Box)
+	- Instructions(Middle Box)
+	- PowerButton Text (Bottom Box)
