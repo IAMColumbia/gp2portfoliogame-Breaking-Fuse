@@ -40,7 +40,6 @@
 - After the LevelManager gets info of where to send power to, it determines if the next tile in the given direction
  contains a cable and tells that cable to "ReceivePower".
 ## Art:
-- All Cable Types contain 50 Keyframes of Power Output-fill Animations
-- Sprites will be flipped/oriented just before taking Power Input to assure the animation plays correctly and begins flowing from the correct end
-Straight-Cable/Pipe (Can be placed Vertically/Horizontally with any Rotation)
+- This is what it would look like if one of the Cables were to be animated with its Power Level.
+Straight-Cable/Pipe (Can be placed Vertically/Horizontally)
 ![Imgur](https://imgur.com/e7nD4Ks.gif)
