@@ -1,0 +1,27 @@
+Release Notes version 3 MVP
+
+This release gets all of the functionality from the
+Models into Unity. 
+Most of the Models were able to have a proper Viewmodel,
+but handling GameObjects and their transforms were 
+more complicated than expected when bringing over 
+the models for the Grid and Evaluator classes.
+
+The game is totally replayable, has decent art, and
+it has music (from www.BenSound.com).
+
+Known Bugs/Issues:
+ - It's still up to debate how FourWay cables are handled.
+   They currently prioritize the paths (right>down>up>left).
+
+ - Players will need to be able to swap tiles to be able to 
+   totally avoid getting an unsolvable board.
+
+
+Controls:
+Left Click - 	Reveal Tiles
+				Select Tiles
+				Rotate a Selected Tile Counter-Clockwise
+			 
+Right Click - 	Rotate a Selected Tile Clockwise
+
