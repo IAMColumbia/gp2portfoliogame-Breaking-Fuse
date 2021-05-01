@@ -3,32 +3,46 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Assets.Scripts;
 
 public class UnityGrid : MonoBehaviour
 {
+    public enum GridStates { None, Unsolved, Solved }
+    public virtual GameObject[,] CableTileGrid { get; set; }
+    public virtual GameObject LastConnectedTile { get; set; }
+
+    public GameObject TimedEvaluator;
+
+    //Store the tile that was last selected
+    private GameObject lastSelectedTile;
+
+    //Parent Object for Instantiated Cables
+    private GameObject cableObjectParent;
+
+    private int wins;
+    private int winStreak;
+
+    #region UnityCableTile Prefabs
     public GameObject StraightCablePrefab;
     public GameObject CurvedCablePrefab;
     public GameObject FourWayCablePrefab;
-    public enum GridStates { Unsolved, Solved }
-    public virtual GameObject[,] CableTileGrid { get; set; }
-    public virtual GameObject LastConnectedTile { get; set; }
-    public GridStates State = GridStates.Unsolved;
+
+    #endregion
+
+    #region GridSetup
+    public GridStates State = GridStates.None;
     public int columnSize = 6;
     public int rowSize = 6;
     public float xScreenOffset = -2.7f;
     public float yScreenOffset = -3.8f;
     public float padding = 1.5f;
-
-    private void Start()
-    {
-        CableTileGrid = new GameObject[this.columnSize, this.rowSize];
-        FillWCableTiles();
-        ShuffleGrid(CableTileGrid);
-    }
+    #endregion
 
     private void Update()
     {
-        Draw();
+        if (State != GridStates.None)
+            Draw();
     }
 
     /// <summary>
@@ -41,29 +55,30 @@ public class UnityGrid : MonoBehaviour
         {
             for (int j = 0; j < this.columnSize; j++)
             {
-                pos = new Vector3((i * padding) + xScreenOffset, (j * padding) + yScreenOffset, -1);
+                pos = new Vector3((j * padding) + xScreenOffset, ((i * padding) * -1) + yScreenOffset, -1);
+
                 if (i == 0)
                     //Instantiate at least one row of Straight Cables
-                    CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                    CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                 else if (i == 1)
                     //Instantiate at least one row of Curved Cables
-                    CableTileGrid[i, j] = Instantiate(CurvedCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                    CableTileGrid[i, j] = Instantiate(CurvedCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                 else
                 {
                     int type = UnityEngine.Random.Range(0, Enum.GetNames(typeof(CableTile.CableTypes)).Length);
                     switch (type)
                     {
                         case 0:
-                            CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                            CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                             break;
                         case 1:
-                            CableTileGrid[i, j] = Instantiate(CurvedCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                            CableTileGrid[i, j] = Instantiate(CurvedCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                             break;
                         case 2:
-                            CableTileGrid[i, j] = Instantiate(FourWayCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                            CableTileGrid[i, j] = Instantiate(FourWayCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                             break;
                         default:
-                            CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, this.transform) as GameObject;
+                            CableTileGrid[i, j] = Instantiate(StraightCablePrefab, pos, Quaternion.identity, cableObjectParent.transform) as GameObject;
                             break;
                     }
                 }
@@ -72,7 +87,7 @@ public class UnityGrid : MonoBehaviour
     }
 
     /// <summary>
-    /// Shuffle this Grid's CableTiles
+    /// Shuffle this Grid's CableTiles.
     /// </summary>
     /// <param name="values"></param>
     protected virtual void ShuffleGrid(GameObject[,] values)
@@ -83,7 +98,7 @@ public class UnityGrid : MonoBehaviour
 
         for (int i = 0; i < numOfTiles - 1; i++)
         {
-            // Pick a random cell between i and the end of the array.
+            // Pick a random tile between i and the end of the array.
             int j = UnityEngine.Random.Range(i, numOfTiles);
 
             // Convert to row/column indexes.
@@ -92,57 +107,137 @@ public class UnityGrid : MonoBehaviour
             int row_j = j / numOfColumns;
             int col_j = j % numOfColumns;
 
-            // Swap cells i and j.
+            // Swap tiles i and j.
             GameObject temp = values[row_i, col_i]; //temp = tile1
-            temp.transform.position = values[row_i, col_i].transform.position;
-
-            values[row_i, col_i] = values[row_j, col_j]; // tile1 = tile2
-            values[row_i, col_i].transform.position = values[row_j, col_j].transform.position;
-
+            values[row_i, col_i] = values[row_j, col_j]; //tile1 = tile2
             values[row_j, col_j] = temp; //tile2 = temp(tile1)
-            values[row_j, col_j].transform.position = temp.transform.position;
         }
-
-        this.LastConnectedTile = CableTileGrid[0, 0]; //Designate new StartTile
     }
 
-    public void Draw()
+    /// <summary>
+    /// Draw the CableTileGrid at their appropriate positions.
+    /// </summary>
+    protected virtual void Draw()
     {
         Vector3 pos;
         for (int i = 0; i < this.rowSize; i++)
         {
             for (int j = 0; j < this.columnSize; j++)
             {
-                //set position
-                pos = new Vector3((i * padding) + xScreenOffset, (j * padding) + yScreenOffset, -1);
+                pos = new Vector3((j * padding) + xScreenOffset, ((i * padding) * -1) + yScreenOffset, -1);
                 CableTileGrid[i, j].transform.position = pos;
-
-                //set rotation - Hardcoded Hack
-                if (Input.anyKeyDown)
-                {
-                    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-                    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-                    if (hit.collider.gameObject.tag == "cableTile") //Null Reference Exception?
-                    {
-                        if (Input.GetMouseButtonDown(0))
-                        {
-
-                            CableTileGrid[i, j].GetComponent<UnityCableTile>().cableTile.Cable.Nodes = CableRotator.Instance.RotateLeft(CableTileGrid[i, j].GetComponent<UnityCableTile>().cableTile.Cable.Nodes);
-                            CableTileGrid[i, j].transform.Rotate(new Vector3(0, 0, 90));
-                        }
-                        else if (Input.GetMouseButtonDown(1))
-                        {
-                            CableTileGrid[i, j].GetComponent<UnityCableTile>().cableTile.Cable.Nodes = CableRotator.Instance.RotateRight(CableTileGrid[i, j].GetComponent<UnityCableTile>().cableTile.Cable.Nodes);
-                            CableTileGrid[i, j].transform.Rotate(new Vector3(0, 0, -90));
-                        }
-
-                    }
-
-                }
             }
         }
     }
 
+    /// <summary>
+    /// Receive an update from a clicked cableTile and handle input.
+    /// </summary>
+    /// <param name="cableTile"></param>
+    /// <param name="key"></param>
+    public void CableTileUpdate(UnityCableTile cableTile, KeyCode key)
+    {
+        if (lastSelectedTile != null)
+        {
+            if (cableTile.gameObject == lastSelectedTile)
+            {
+                //Reveal / RotateLeft on Mouse 0
+                if (key == KeyCode.Mouse0)
+                {
+                    if (cableTile.CableState == CableTile.CableStates.Hidden)
+                        cableTile.Reveal();
+                    else if (cableTile.CableState == CableTile.CableStates.Revealed)
+                        cableTile.Rotate(UnityCableTile.TransformRotationDirections.Left);
+                }
+                //RotateRight on Mouse 1
+                else if (key == KeyCode.Mouse1)
+                    cableTile.Rotate(UnityCableTile.TransformRotationDirections.Right);
+            }
+            else
+            {
+                //Select the Tile on Mouse 0 then Reveal if it is Hidden
+                if (key == KeyCode.Mouse0)
+                    SelectTile();
+                //Swap with the last selected tile on Mouse 1
+                else if (key == KeyCode.Mouse1)
+                {
+                    //SwapTiles(cableTile.gameObject, lastSelectedTile);
+                }
+            }
+        }
+        else
+        {
+            //Select the Tile on Mouse 0 then Reveal if it is Hidden
+            if (key == KeyCode.Mouse0)
+                SelectTile();
+        }
+
+        void SelectTile()
+        {
+            cableTile.Select();
+            if (lastSelectedTile != null) lastSelectedTile.GetComponent<UnityCableTile>().Deselect();
+            lastSelectedTile = cableTile.gameObject;
+
+            if (cableTile.CableState == CableTile.CableStates.Hidden)
+                cableTile.Reveal();
+        }
+    }
+
+
+    public void Reset()
+    {
+        Destroy(cableObjectParent);
+        DestroyAllCableTiles();
+
+        this.State = GridStates.Unsolved;
+        cableObjectParent = new GameObject("Cables");
+        CableTileGrid = new GameObject[this.columnSize, this.rowSize];
+        FillWCableTiles();
+        ShuffleGrid(CableTileGrid);
+        TimedEvaluator.GetComponent<CountdownTimer>().Reset();
+    }
+
+    /// <summary>
+    /// Evaluate this grid.
+    /// </summary>
+    public void RunEvaluation()
+    {
+        for (int i = 0; i < (this.rowSize * this.columnSize); i++)
+        {
+            UnityGridEvaluator.Instance.Evaluate(this);
+        }
+
+        if (this.State == GridStates.Solved)
+        {
+            GameManager.Win();
+            Debug.Log("Win");
+        }
+        else
+        {
+            GameManager.Lose();
+            Debug.Log("Lose");
+            this.State = GridStates.None;
+        }
+
+
+    }
+
+
+    /// <summary>
+    /// If the grid is not already null, nullify it.
+    /// </summary>
+    private void DestroyAllCableTiles()
+    {
+        if (CableTileGrid != null)
+        {
+            for (int i = 0; i < this.rowSize; i++)
+            {
+                for (int j = 0; j < this.columnSize; j++)
+                {
+                    Destroy(CableTileGrid[i, j]);
+                }
+            }
+        }
+
+    }
 }

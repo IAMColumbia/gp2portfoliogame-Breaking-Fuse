@@ -64,6 +64,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ClickManager.cs" />
+    <Compile Include="Assets\Scripts\CountdownTimer.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\IClickable.cs" />
     <Compile Include="Assets\Scripts\Models\Cable.cs" />
     <Compile Include="Assets\Scripts\Models\CableRotator.cs" />
     <Compile Include="Assets\Scripts\Models\CableTile.cs" />
@@ -73,8 +77,11 @@
     <Compile Include="Assets\Scripts\Models\Grid.cs" />
     <Compile Include="Assets\Scripts\Models\Node.cs" />
     <Compile Include="Assets\Scripts\Models\StraightCable.cs" />
+    <Compile Include="Assets\Scripts\PowerChecker.cs" />
+    <Compile Include="Assets\Scripts\PowerStart.cs" />
     <Compile Include="Assets\Scripts\UnityCableTile.cs" />
     <Compile Include="Assets\Scripts\UnityGrid.cs" />
+    <Compile Include="Assets\Scripts\UnityGridEvaluator.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
