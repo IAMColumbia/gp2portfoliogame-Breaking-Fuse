@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="NameAndType">
+  <Class Name="Assets.Scripts.ClickManager">
+    <Position X="14" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ClickManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CountdownTimer">
+    <Position X="9.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACIABAAAAEAAAAAAAAAAAACAAAAAAAAAACA=</HashCode>
+      <FileName>Assets\Scripts\CountdownTimer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assets.Scripts.UnityGridEvaluator">
+    <Position X="5" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\UnityGridEvaluator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityGrid">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="UnityGrid.GridStates">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\UnityGrid.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gAQABBIAAAAAFgAAAAAgAAAAEBRABAIIDoAApAACAQA=</HashCode>
+      <FileName>Assets\Scripts\UnityGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityCableTile" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="UnityCableTile.TransformRotationDirections">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\UnityCableTile.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="UnityCableTile.SelectionStates">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\UnityCableTile.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAqAgACAAAAAAAABGlAAAAIAAAEMAQAQAQBg=</HashCode>
+      <FileName>Assets\Scripts\UnityCableTile.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PowerStart" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACIAAAAAAAAABACCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PowerStart.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PowerChecker">
+    <Position X="11.75" Y="6.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACQQAAAAACAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\PowerChecker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="11.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAQAAAAAAAAAAgAEEAAAAAAAAAAAAAAQAAIAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.Cable">
+    <Position X="9.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\Cable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.CableRotator">
+    <Position X="7.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAggAAAAAAAAAAAAAAABAAAAAQAAAAAAAIAA=</HashCode>
+      <FileName>Assets\Scripts\Models\CableRotator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.CableTile">
+    <Position X="5" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CableConnector.Models.CableTile.CableTypes">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Models\CableTile.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="CableConnector.Models.CableTile.CableStates">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Models\CableTile.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAQAAAAAAAQAABAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\CableTile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.CurvedCable">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\CurvedCable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.FourWayCable">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\FourWayCable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.Node">
+    <Position X="13.5" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="CableConnector.Models.Node.Positions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Models\Node.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\Node.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CableConnector.Models.StraightCable">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Models\StraightCable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Assets.Scripts.IClickable">
+    <Position X="14" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\IClickable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
