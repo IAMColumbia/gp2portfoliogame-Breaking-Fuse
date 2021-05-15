@@ -161,7 +161,7 @@ public class UnityGrid : MonoBehaviour
                 //Swap with the last selected tile on Mouse 1
                 else if (key == KeyCode.Mouse1)
                 {
-                    //SwapTiles(cableTile.gameObject, lastSelectedTile);
+                    SwapTiles(cableTile.gameObject, ref lastSelectedTile);
                 }
             }
         }
@@ -183,6 +183,13 @@ public class UnityGrid : MonoBehaviour
         }
     }
 
+    private void SwapTiles(GameObject tile1, ref GameObject tile2)
+    {
+
+        GameObject temp = tile1; //temp = tile1
+        tile1 = tile2; //tile1 = tile2
+        tile2 = temp; //tile2 = temp(tile1)
+    }
 
     public void Reset()
     {
