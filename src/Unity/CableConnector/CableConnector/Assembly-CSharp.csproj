@@ -72,9 +72,7 @@
     <Compile Include="Assets\Scripts\Models\CableRotator.cs" />
     <Compile Include="Assets\Scripts\Models\CableTile.cs" />
     <Compile Include="Assets\Scripts\Models\CurvedCable.cs" />
-    <Compile Include="Assets\Scripts\Models\Evaluator.cs" />
     <Compile Include="Assets\Scripts\Models\FourWayCable.cs" />
-    <Compile Include="Assets\Scripts\Models\Grid.cs" />
     <Compile Include="Assets\Scripts\Models\Node.cs" />
     <Compile Include="Assets\Scripts\Models\StraightCable.cs" />
     <Compile Include="Assets\Scripts\PowerChecker.cs" />

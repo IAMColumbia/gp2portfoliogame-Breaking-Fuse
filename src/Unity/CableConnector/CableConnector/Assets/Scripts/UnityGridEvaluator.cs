@@ -56,7 +56,8 @@ namespace Assets.Scripts
                                 if (grid.CableTileGrid[i, j].GetComponent<UnityCableTile>() == lastConnectedTile)
                                 {
                                     //Check if this is the EndTile and mark Solved IF it has a valid Right
-                                    if (grid.CableTileGrid[i, j] == grid.CableTileGrid[grid.CableTileGrid.GetLength(0) - 1, grid.CableTileGrid.GetLength(1) - 1])
+                                    if (grid.CableTileGrid[i, j] == grid.CableTileGrid[grid.CableTileGrid.GetLength(0) - 1, grid.CableTileGrid.GetLength(1) - 1] 
+                                        && grid.CableTileGrid[i, j].GetComponent<UnityCableTile>().cableTile.Cable.Nodes[2].IsValid == true)
                                     {
                                         grid.State = UnityGrid.GridStates.Solved;
                                         Debug.Log("Solved!");
