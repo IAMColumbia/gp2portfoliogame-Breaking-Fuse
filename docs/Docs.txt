@@ -1,3 +1,22 @@
+----------BASIC DOCUMENTATION----------
+Game Name:	Cable Connector
+	
+Description Short:	Cable Connector is a singleplayer 2D puzzle game made in Unity that is based on PipeMania(1989). 
+					It tests the player's ability to connect a given set of Cables from a starting point to an ending point. 
+						
+Description Long:	Based on PipeMania and the minigame-genre it established, Cable Connector is a singleplayer 2D puzzle game made in Unity where different shapes of cables must be connected to power a generator. 
+					Types of cables include: A Straight Cable (Vertical or Horizontal), A Curved Cable (90 degree angle), a Resistor Cable (Slows Down Flow), and an Untouchable, Shorted Cable that can blow up. 
+					With only a few Cables visible at the start of the level, the player must flip over tiles on the grid-based map in order to reveal the Cable they require.
+					The player then needs to rotate their piece so that it fits properly with the previous tile's Power Output. 
+					The Power Output is the Yellow electricity that runs through all of the cables it can go through. If the Power Output 
+					is misdirected/ends up nowhere, the player will fail the level. 
+					The player wins the level if cables can be used to get the Power Output flowing from the starting point to the ending point.
+					
+Genre: Puzzle
+Platform: PC
+
+
+----------DEVELOPER NOTES/LOG----------
 ~~[Model Structure]~~
 Grid->(Cable)Tile->Cable/TYPECable->Nodes
 └>Evaluator/Solver
@@ -22,4 +41,32 @@ multiple paths are available, follow Priority (Right, Bottom, Up, Left)
 
 ConsoleEvaluator VModel will Re-Write the tile(s) with 
 ConsoleColor.Green at end of Evaluate() to show proper Connection.
+
+
+----------POSTMORTEM----------
+UML: [See UML.png in this directory]
+	   The UnityGrid and UnityEvaluator were meant to be ViewModels of the Grid and Evaluator Models, respectivelyl.
+	   It didn't work out for those models, but it went smoothly for my CableTiles.
+	   The Grid class generates and handles the grid and calls the Evaluator to check for connections.
+	   The CableTile class contains Cables, which have different Nodes based on which type of cable it is.
+	   These Nodes are then adapted into different Transform Rotations for the Unity GameObjects.
+	   The other classes are scripts to update the UI, handle input, and update the score.
+	   
+Game Design Patterns: I used the Strategy Pattern, Singleton Pattern, and an improper Observer Pattern.
+					  The Singleton pattern is the only pattern I used on purpose, and it was to create a single GridEvaluator and CableRotator Instance as I only needed one of each.
+					  This really helped me make sure I didn't make more code than I needed to.
+
+Challenges: Figuring out how to make viewmodels of my original models was the most confusing. 
+			Taking the models and turning them into GameObjects was a lot more overwhelming than I thought it'd be.
+			It turned out that the Grid class I made was not abstract enough to suddenly handle Unity Transforms and such.
+			
+Reusability/Extensibility: I think that with only a few changes, so many more things are possible with the models I made.
+						   I know it's possible to make a multiplayer version of this that could include an enormous amount of grids at once so long as the Input is tweaked and if proper Observers are implemented.
+						   It's also possible to make the grid larger and smaller, but it'd require new Art for the background.
+						   I would say the ratio between Unity-specific code. A lot of it became Unity dependent once I realized the Grid/Evaluator Models weren't perfect.
+
+Polish: I would say the game is definitely shippable, but there's just so much more I wanted to do with it to call it Finished.
+		Some of the missing features include: A Tile-Swapping System, More Cable Types, and Multiple Connection Routing.
+
+
 
